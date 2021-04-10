@@ -3,7 +3,6 @@ public class Customer {
     private String lastName;
     private String emailAddress;
     private String password;
-    final public static String dataSourceName = "customer";
 
     public Customer(String emailAddress, String firstName, String lastName, String password){
         this.emailAddress = emailAddress;

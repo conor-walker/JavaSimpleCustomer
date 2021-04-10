@@ -6,11 +6,11 @@ import java.util.Scanner;
 
 public class ReadDelimitedFile {
 
-    private String fileDelimitor = ",";
+    private String fileDelimiter = ",";
     private String filePathPrefix = "src/main/resources/";
 
-    public void setFileDelimitor(String fileDelimitor){
-        this.fileDelimitor = fileDelimitor;
+    public void setFileDelimiter(String fileDelimiter){
+        this.fileDelimiter = fileDelimiter;
     }
 
     public List<String[]> getFileData(String fileName){
@@ -20,7 +20,7 @@ public class ReadDelimitedFile {
             Scanner propertyReader = new Scanner(propertyFile);
             while (propertyReader.hasNextLine()) {
                 String fileRow = propertyReader.nextLine();
-                fileData.add(fileRow.split(fileDelimitor));
+                fileData.add(fileRow.split(fileDelimiter));
             }
             propertyReader.close();
         } catch (IOException e) {

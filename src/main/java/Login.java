@@ -1,7 +1,7 @@
 import java.util.List;
 import java.util.Scanner;
 
-public class LogIn {
+public class Login {
     private Scanner userInput = new Scanner(System.in);
     private Customer currentUser;
 

@@ -1,10 +1,10 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class BooksFromFile {
+public class BooksFromFile implements Inventory{
     List<Book> listOfBooks = new ArrayList<>();
 
-    public List<Book> getAllBooks(){
+    public List<Book> getAllInventory(){
         ReadDelimitedFile readDelimitedFile = new ReadDelimitedFile();
         List<String[]> fileData = readDelimitedFile.getFileData("items.csv");
         addToList(fileData);
@@ -21,4 +21,7 @@ public class BooksFromFile {
         return new Book(bookInfo[0],bookInfo[1],bookInfo[2],bookInfo[3]);
     }
 
+    public int getSize(){
+        return listOfBooks.size();
+    }
 }

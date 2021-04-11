@@ -26,4 +26,8 @@ public class Book {
     public String getPrice() {
         return price;
     }
+
+    public String toString(){
+        return this.bookName + " by " + this.author + ". Price: £" + this.price + ". Category: " + this.genre;
+    }
 }

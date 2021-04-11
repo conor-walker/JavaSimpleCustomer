@@ -12,41 +12,6 @@ public class Display {
     private static final Books currentStock = new Books(new ReadDelimitedFile());
     private static final List<Book> stock = currentStock.getAllInventory();
 
-    public static void mainMenu(){
-        System.out.println("Please select your option:");
-        System.out.println("1: View books");
-        System.out.println("2: View Cart");
-        System.out.println("3: Checkout");
-        System.out.println("4: Logout");
-    }
-
-    public static void displayItems(){
-        int id = 1;
-        for (Book book : stock) {
-            System.out.println(id + ": " + book.toString());
-            id++;
-        }
-    }
-
-    public static int userInt(int lowerBound,int upperBound){
-        int selection;
-        do{
-            while (!userInput.hasNextInt()){
-                userInput.next();
-            }
-            selection = userInput.nextInt();
-        } while(selection > upperBound || selection < lowerBound);
-        return selection;
-    }
-
-    public static void selectItem(){
-        displayItems();
-        System.out.println("Please select an item to buy:");
-        int selection = userInt(0,stock.size());
-        currentCart.addToBasket(stock.get(selection - 1));
-        System.out.println("Item added!\n");
-    }
-
     public static void menuLoop (){
         do {
             mainMenu();
@@ -69,7 +34,43 @@ public class Display {
         } while(true);
     }
 
-    public static void leaveStore(){
+
+    private static void mainMenu(){
+        System.out.println("Please select your option:");
+        System.out.println("1: View books");
+        System.out.println("2: View Cart");
+        System.out.println("3: Checkout");
+        System.out.println("4: Logout");
+    }
+
+    private static void displayItems(){
+        int id = 1;
+        for (Book book : stock) {
+            System.out.println(id + ": " + book.toString());
+            id++;
+        }
+    }
+
+    private static int userInt(int lowerBound,int upperBound){
+        int selection;
+        do{
+            while (!userInput.hasNextInt()){
+                userInput.next();
+            }
+            selection = userInput.nextInt();
+        } while(selection > upperBound || selection < lowerBound);
+        return selection;
+    }
+
+    private static void selectItem(){
+        displayItems();
+        System.out.println("Please select an item to buy:");
+        int selection = userInt(0,stock.size());
+        currentCart.addToBasket(stock.get(selection - 1));
+        System.out.println("Item added!\n");
+    }
+
+    private static void leaveStore(){
         System.out.println("Thanks for shopping!");
         System.exit(0);
     }

@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args){
         Customers registeredUsers = new CustomersFromFile();
         Authorisation logIn = new Login(registeredUsers);
-        //logIn.logIn();
+        logIn.logIn();
         Display.menuLoop();
     }
 }

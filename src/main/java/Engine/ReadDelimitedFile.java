@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ReadDelimitedFile {
+public class ReadDelimitedFile implements InventoryStock{
 
     private String fileDelimiter = ",";
 

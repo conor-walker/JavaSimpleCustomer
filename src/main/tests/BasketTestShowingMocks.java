@@ -8,7 +8,7 @@ import static org.mockito.Mockito.when;
 
 public class BasketTestShowingMocks {
     @Test
-    public void addBook_whenValid_updatesPrice(){
+    public void addBookUpdatesPriceWhenValid(){
         Basket testBasket = new Basket();
         Book testBook = mock(Book.class);
         when(testBook.getPrice()).thenReturn("5.99");
@@ -19,7 +19,7 @@ public class BasketTestShowingMocks {
     }
 
     @Test
-    public void addBook_whenValid_updatesBasketSize(){
+    public void addBookUpdatesBasketSizeWhenValid(){
         Basket testBasket = new Basket();
         Book testBook = mock(Book.class);
 

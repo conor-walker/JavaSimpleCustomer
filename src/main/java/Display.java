@@ -1,12 +1,16 @@
 import Data.Book;
-import Data.BooksFromFile;
+import Data.Books;
 import Engine.Basket;
+import Engine.ReadDelimitedFile;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Display {
     public static Scanner userInput = new Scanner(System.in);
     public static Basket currentCart = new Basket();
+    private static final Books currentStock = new Books(new ReadDelimitedFile());
+    private static final List<Book> stock = currentStock.getAllInventory();
 
     public static void mainMenu(){
         System.out.println("Please select your option:");
@@ -16,52 +20,53 @@ public class Display {
         System.out.println("4: Logout");
     }
 
-    public static int displayItems(){
-        BooksFromFile currentStock = new BooksFromFile();
+    public static void displayItems(){
         int id = 1;
-        for (Book book :currentStock.getAllInventory()){
+        for (Book book : stock) {
             System.out.println(id + ": " + book.toString());
             id++;
         }
-        return currentStock.getSize();
+    }
+
+    public static int userInt(int lowerBound,int upperBound){
+        int selection;
+        do{
+            while (!userInput.hasNextInt()){
+                userInput.next();
+            }
+            selection = userInput.nextInt();
+        } while(selection > upperBound || selection < lowerBound);
+        return selection;
     }
 
     public static void selectItem(){
         displayItems();
-        BooksFromFile currentStock = new BooksFromFile();
-        var stock = currentStock.getAllInventory();
-        System.out.println("Please select an item to buy");
-        int selection;
-        while (!userInput.hasNextInt()){
-            userInput.next();
-        }
-        selection = userInput.nextInt();
+        System.out.println("Please select an item to buy:");
+        int selection = userInt(0,stock.size());
         currentCart.addToBasket(stock.get(selection - 1));
+        System.out.println("Item added!\n");
     }
 
     public static void menuLoop (){
-        String selection;
-        do{
-            selection = "";
+        do {
             mainMenu();
-            selection = userInput.nextLine();
+            int selection = userInt(1,4);
             switch(selection){
-                case("1"):
+                case(1):
                     selectItem();
                     break;
-                case("2"):
+                case(2):
                     System.out.println(currentCart.toString());
                     break;
-                case("3"):
+                case(3):
                     currentCart.checkoutBasket();
-                    break;
-                case("4"):
+                    leaveStore();
+                case(4):
                     leaveStore();
                 default:
                     System.out.println("Invalid selection - please try again!" +"\n");
             }
-            userInput.nextLine();
-        } while(!selection.equals("4"));
+        } while(true);
     }
 
     public static void leaveStore(){

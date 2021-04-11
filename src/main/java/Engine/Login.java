@@ -21,10 +21,8 @@ public class Login implements Authorisation{
         return userInput.nextLine();
     }
 
-    private String getPassword(String emailAddress) {
-        Customers allCustomers = new CustomersFromFile();
+    public String getPassword(String emailAddress) {
         String password = "";
-        List<Customer> listOfCustomers = allCustomers.getAllCustomers();
         for (Customer customer : listOfCustomers) {
             if (customer.getEmailAddress().equals(emailAddress)) {
                 password = customer.getPassword();
@@ -34,6 +32,10 @@ public class Login implements Authorisation{
         return password;
     }
 
+    public boolean verifyPassword(String userPassword, String inputPassword){
+        return(userPassword.equals(inputPassword));
+    }
+
     public void logIn() {
         String emailAddress = input("Enter email address");
         String password = getPassword(emailAddress);
@@ -41,8 +43,9 @@ public class Login implements Authorisation{
         System.out.println("You are not a registered user. Exiting...");
             System.exit(0);
         }
+
         do{
-            if (password.equals(input("Enter password"))){
+            if (verifyPassword(password,input("Enter password"))){
                 System.out.println("You are logged in. Welcome, " + currentUser.getFirstName() + "!");
                 break;
             }

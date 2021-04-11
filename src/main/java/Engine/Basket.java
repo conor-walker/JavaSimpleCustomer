@@ -43,6 +43,10 @@ public class Basket {
     }
 
     public void checkoutBasket(){
+        if (shoppingCart.size() == 0){
+            System.out.println("Cannot checkout - no items selected!");
+            return;
+        }
         System.out.println("You have purchased " + shoppingCart.size() + " items for £" + totalPrice());
         System.out.println("Items purchased:");
         System.out.println(toString());

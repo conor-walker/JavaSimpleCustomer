@@ -13,8 +13,4 @@ public class CustomersFromStub implements Customers {
     public List<Customer> getAllCustomers(){
         return listOfCustomers;
     }
-
-    private void register(){
-            listOfCustomers.add(new Customer("1","2","3","4"));
-    }
 }

@@ -1,7 +1,11 @@
+package Data;
+
+import Engine.ReadDelimitedFile;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class BooksFromFile implements Inventory{
+public class BooksFromFile implements Inventory {
     List<Book> listOfBooks = new ArrayList<>();
 
     public List<Book> getAllInventory(){

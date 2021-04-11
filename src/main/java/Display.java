@@ -1,3 +1,7 @@
+import Data.Book;
+import Data.BooksFromFile;
+import Engine.Basket;
+
 import java.util.Scanner;
 
 public class Display {
@@ -27,17 +31,18 @@ public class Display {
         BooksFromFile currentStock = new BooksFromFile();
         var stock = currentStock.getAllInventory();
         System.out.println("Please select an item to buy");
-        int selection = 0;
+        int selection;
         while (!userInput.hasNextInt()){
-            selection = userInput.nextInt();
-            userInput.nextLine();
+            userInput.next();
         }
-        currentCart.addToBasket(stock.get(selection));
+        selection = userInput.nextInt();
+        currentCart.addToBasket(stock.get(selection - 1));
     }
 
     public static void menuLoop (){
         String selection;
         do{
+            selection = "";
             mainMenu();
             selection = userInput.nextLine();
             switch(selection){
@@ -49,11 +54,13 @@ public class Display {
                     break;
                 case("3"):
                     currentCart.checkoutBasket();
+                    break;
                 case("4"):
                     leaveStore();
                 default:
                     System.out.println("Invalid selection - please try again!" +"\n");
             }
+            userInput.nextLine();
         } while(!selection.equals("4"));
     }
 

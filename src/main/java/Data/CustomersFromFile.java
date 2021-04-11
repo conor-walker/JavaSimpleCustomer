@@ -1,13 +1,17 @@
+package Data;
+
+import Engine.ReadDelimitedFile;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomersFromStub implements Customers {
+public class CustomersFromFile implements Customers {
     List<Customer> listOfCustomers = new ArrayList<>();
 
-    public CustomersFromStub(){
-        listOfCustomers.add(new Customer("test@test.com","Test","Customer","test"));
-    }
     public List<Customer> getAllCustomers(){
+        ReadDelimitedFile readDelimitedFile = new ReadDelimitedFile();
+        List<String[]> fileData = readDelimitedFile.getFileData("customer.csv");
+        addToList(fileData);
         return listOfCustomers;
     }
 

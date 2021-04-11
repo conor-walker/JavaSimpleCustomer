@@ -1,3 +1,5 @@
+package Data;
+
 public class Customer {
     private String firstName;
     private String lastName;
@@ -13,10 +15,6 @@ public class Customer {
 
     public String getFirstName(){
         return this.firstName;
-    }
-
-    public String getLastName(){
-        return this.lastName;
     }
 
     public String getEmailAddress(){

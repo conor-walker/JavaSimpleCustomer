@@ -1,11 +1,22 @@
+package Engine;
+
+import Data.Customer;
+import Data.Customers;
+import Data.CustomersFromFile;
+
 import java.util.List;
 import java.util.Scanner;
 
-public class Login {
-    private Scanner userInput = new Scanner(System.in);
+public class Login implements Authorisation{
     private Customer currentUser;
+    List<Customer> listOfCustomers;
+
+    public Login(Customers registeredUsers){
+        this.listOfCustomers = registeredUsers.getAllCustomers();
+    }
 
     private String input(String message) {
+        Scanner userInput = new Scanner(System.in);
         System.out.println(message);
         return userInput.nextLine();
     }
@@ -27,13 +38,15 @@ public class Login {
         String emailAddress = input("Enter email address");
         String password = getPassword(emailAddress);
         if (password.equals("")) {
-            System.out.println("You are not a user");
+        System.out.println("You are not a registered user. Exiting...");
+            System.exit(0);
         }
-        else if (password.equals(input("Enter password"))){
-            System.out.println("You are logged in. Welcome, " + currentUser.getFirstName() + "!");
-        }
-        else {
-            System.out.println("Wrong password, no second chances");
-        }
+        do{
+            if (password.equals(input("Enter password"))){
+                System.out.println("You are logged in. Welcome, " + currentUser.getFirstName() + "!");
+                break;
+            }
+            System.out.println("Incorrect password - please try again");
+        } while (true);
     }
 }

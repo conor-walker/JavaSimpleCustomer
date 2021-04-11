@@ -1,3 +1,5 @@
+package Engine;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,7 +9,6 @@ import java.util.Scanner;
 public class ReadDelimitedFile {
 
     private String fileDelimiter = ",";
-    private String filePathPrefix = "src/main/resources/";
 
     public void setFileDelimiter(String fileDelimiter){
         this.fileDelimiter = fileDelimiter;
@@ -16,7 +17,8 @@ public class ReadDelimitedFile {
     public List<String[]> getFileData(String fileName){
         List<String[]> fileData = new ArrayList<String[]>();
         try {
-            File propertyFile = new File(filePathPrefix+ fileName);
+            String filePathPrefix = "src/main/resources/";
+            File propertyFile = new File(filePathPrefix + fileName);
             Scanner propertyReader = new Scanner(propertyFile);
             while (propertyReader.hasNextLine()) {
                 String fileRow = propertyReader.nextLine();
